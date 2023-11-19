@@ -1,0 +1,107 @@
+:root {
+	--primary-clr: hsl(210, 90%, 50%);
+	--secondary-clr: hsl(30, 90%, 50%);
+}
+html {
+	box-sizing: border-box;
+}
+*,
+*::before,
+*::after {
+	box-sizing: inherit;
+	margin: 0;
+	padding: 0;
+	font: inherit;
+}
+body {
+	min-height: 100vh;
+}
+.container {
+	width: min(calc(100% - 1rem), var(--max-width, 64rem));
+	margin-inline: auto;
+	@media (min-width: 75em) {
+		--max-width: 75rem;
+	}
+	@media (min-width: 87.5em) {
+		--max-width: 87.5rem;
+	}
+}
+.grid {
+	display: grid;
+	outline: 2px dashed black;
+	/* grid-template-columns: 1fr; */
+	justify-content: center;
+	@media (min-width: 64em) {
+		grid-template-columns: 1fr 1fr;
+	}
+}
+.buttons {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 2rem;
+	@media (min-width: 64em) {
+		flex-direction: column;
+		margin-top: 2rem;
+	}
+}
+.button {
+	display: block;
+
+	padding: 0.5em 1.5em;
+	text-transform: uppercase;
+
+	font-size: 1.25rem;
+	cursor: pointer;
+	transition: all 0.1s ease-in-out;
+}
+.button:hover {
+	scale: 1.05;
+}
+.btn-start {
+	background-color: var(--primary-clr, #000);
+	color: white;
+	border: 1px solid transparent;
+}
+.btn-start:hover {
+	background-color: white;
+	color: var(--primary-clr, #000);
+	border-color: var(--primary-clr, #000);
+}
+.btn-erase {
+	background-color: var(--secondary-clr, #000);
+	color: white;
+	border: 1px solid transparent;
+}
+.btn-erase:hover {
+	background-color: white;
+	color: var(--secondary-clr, #000);
+	border-color: var(--secondary-clr, #000);
+}
+.drawing-grid {
+	--max-grid-size: 300px;
+	@media (min-width: 48em) {
+		--max-grid-size: 600px;
+	}
+	@media (min-width: 75em) {
+		--max-grid-size: 960px;
+	}
+	--grid-item-width: calc(var(--max-grid-size) / var(--number-of-cols));
+	display: flex;
+	flex-wrap: wrap;
+	width: var(--max-grid-size);
+	height: var(--max-grid-size);
+	margin-top: 2rem;
+}
+.grid-item {
+	border: 1px solid hsl(0 0% 0% / 10%);
+	min-width: var(--grid-item-width);
+	aspect-ratio: 1/1;
+}
+h1 {
+	font-size: 3rem;
+	padding-block: 2rem;
+}
+.controls {
+	text-align: center;
+}
