@@ -2,9 +2,11 @@ const startBtn = document.querySelector(".btn-start");
 const eraseBtn = document.querySelector(".btn-erase");
 const grid = document.querySelector(".drawing-grid");
 const squares = document.querySelectorAll(".drawing-grid > .grid-item");
+const toggle = document.querySelector(".toggle input");
 
 let lightnessPercentage = 100;
 let reverse = false;
+let draw = false;
 startBtn.addEventListener("click", () => {
 	const gridSize = getGridSize();
 	lightnessPercentage = 100;
@@ -19,6 +21,7 @@ eraseBtn.addEventListener("click", () => {
 	generateGrid(+gridSize);
 });
 grid.addEventListener("mouseover", (e) => {
+	if (draw === false) return;
 	const target = e.target.closest(".grid-item");
 	const color = getRandomHSLColor();
 	if (target && !target.classList.contains("colored")) {
@@ -26,7 +29,15 @@ grid.addEventListener("mouseover", (e) => {
 		target.classList.add("colored");
 	}
 });
-
+toggle.addEventListener("change", () => {
+	draw = !draw;
+	updateToggleLabel();
+});
+function updateToggleLabel() {
+	const toggleLabel = document.querySelector(".toggle-container label");
+	const text = draw ? "Turn Off Drawing" : "Turn On Drawing";
+	toggleLabel.textContent = text;
+}
 function getGridSize() {
 	const gridSize = prompt("Enter grid size (max 100)");
 	if (gridSize > 100) {

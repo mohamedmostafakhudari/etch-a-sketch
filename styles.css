@@ -105,3 +105,56 @@ h1 {
 .controls {
 	text-align: center;
 }
+.toggle {
+	background-color: hsl(0 0% 80%);
+	position: relative;
+	width: 80px;
+	height: 40px;
+	border-radius: 24px;
+	overflow: hidden;
+	transition: 200ms ease-in-out;
+}
+.toggle:has(input:checked) {
+	background-color: hsl(120 45% 80%);
+}
+.toggle input {
+	appearance: none;
+	cursor: pointer;
+	position: absolute;
+	inset: 0;
+	outline: 2px solid black;
+}
+.toggle-indicator {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 100%;
+	pointer-events: none;
+	background-color: hsl(0 0% 60%);
+	position: absolute;
+	top: 50%;
+	transform: translateY(-50%);
+	left: 4px;
+	transition-property: left, background-color;
+	transition-duration: 200ms;
+}
+.toggle input:checked + .toggle-indicator {
+	background-color: hsl(120 80% 30%);
+	left: calc(100% - 4px - 2rem);
+}
+.controls {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 3rem;
+}
+
+.toggle-container {
+	display: flex;
+	align-items: center;
+	gap: 2rem;
+}
+.toggle-container label {
+	font-size: 2rem;
+	user-select: none;
+	cursor: pointer;
+}
